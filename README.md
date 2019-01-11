@@ -3,7 +3,7 @@
 </a>
 
 # Orbit
-> This theme is designed by Xiaoying Riley at [3rd Wave Media](http://themes.3rdwavemedia.com/). 
+> This theme is designed by Xiaoying Riley at [3rd Wave Media](http://themes.3rdwavemedia.com/).
 > Visit her [website](http://themes.3rdwavemedia.com/) for more themes.
 
 I have made this into a Jekyll Theme. Checkout the live demo [here](https://webjeda.com/online-cv/).
@@ -25,13 +25,24 @@ I have made this into a Jekyll Theme. Checkout the live demo [here](https://webj
 
 ## Installation
 
-* [Fork](https://github.com/sharu725/online-cv/fork) the repository
+* [Fork](https://github.com/ggiallo28/online-cv/fork) the repository
 * Go to settings and set Github Pages source as master.
 * Your new site should be ready at `https://username.github.io/online-cv/`
 
 Change all the details from one place: ``_data/data.yml``
 
 Watch my [video](https://www.youtube.com/embed/T2nx6tj-ZH4) on installation.
+
+## Run it on Amazon S3
+
+* [Fork](https://github.com/ggiallo28/online-cv/fork) the repository
+* Install jekyll: __gem install --user-install bundler jekyll__
+  * __export GEM_HOME=$HOME/.gem/ruby/x.y.z/bin__
+  * __export PATH=$GEM_HOME:$PATH:__
+* Run __jekyll build__
+* Upload on S3: aws s3 cp <local_folder>/_site s3://<bucket_name>
+* Your new site should be ready at `https://s3.amazonaws.com/<bucket_name>/index.html`
+
 
 ## Skins
 
