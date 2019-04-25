@@ -36,10 +36,7 @@ Watch my [video](https://www.youtube.com/embed/T2nx6tj-ZH4) on installation.
 ## Run it on Amazon S3
 
 * [Fork](https://github.com/ggiallo28/online-cv/fork) the repository
-* Install jekyll: __gem install --user-install bundler jekyll__
-  * __export GEM_HOME=$HOME/.gem/ruby/x.y.z/bin__
-  * __export PATH=$GEM_HOME:$PATH:__
-* Run __jekyll build__
+* Run __docker run --rm -it -v $PWD:/src jguyomard/jekyll-builder jekyll build__
 * Upload on S3: aws s3 cp <local_folder>/_site s3://<bucket_name>
 * Your new site should be ready at `https://s3.amazonaws.com/<bucket_name>/index.html`
 
