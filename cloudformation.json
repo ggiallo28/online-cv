@@ -1,0 +1,42 @@
+[
+  {
+    "ParameterKey": "BucketNameStaging",
+    "ParameterValue": "staging-freeme.name"
+  },
+  {
+    "ParameterKey": "BucketNameProduction",
+    "ParameterValue": "www.freeme.name"
+  },
+  {
+    "ParameterKey": "PrefixStaging",
+    "ParameterValue": "cv"
+  },
+  {
+    "ParameterKey": "PrefixProduction",
+    "ParameterValue": "cv"
+  },
+  {
+    "ParameterKey": "CodeBuildEnvironment",
+    "ParameterValue": "jekyll/builder"
+  },
+  {
+    "ParameterKey": "NotificationEmailAddress",
+    "ParameterValue": "nmsek@hi2.in"
+  },
+  {
+    "ParameterKey": "GitHubOwner",
+    "ParameterValue": "ggiallo28"
+  },
+  {
+    "ParameterKey": "GitHubOAuthToken",
+    "ParameterValue": "/repo/github/token"
+  },
+  {
+    "ParameterKey": "GitHubRepo",
+    "ParameterValue": "online-cv"
+  },
+  {
+    "ParameterKey": "ProjectName",
+    "ParameterValue": "online-cv"
+  }
+]

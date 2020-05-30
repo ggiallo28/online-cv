@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    run-as: root
+    commands:
+      - apk add --update py-pip
+      - pip3 install --upgrade --user awscli
+      - PATH=$PATH:/root/.local/bin
+  pre_build:
+    run-as: root
+    commands:
+      - mkdir _site
+      - chmod 777 _site
+      - mkdir .jekyll-cache
+      - chmod 777 .jekyll-cache
+  build:
+    run-as: root
+    commands:
+      - jekyll build
+  post_build:
+    commands:
+      - aws s3 sync ./_site s3://$BUCKET_NAME/$PREFIX --acl public-read

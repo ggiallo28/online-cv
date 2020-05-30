@@ -1,0 +1,412 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Deploy a codecommit repo to S3
+Parameters:
+    BucketNameStaging:
+        Type: String
+        Description: Name of the bucket where deploy frontend staging
+
+    PrefixStaging:
+        Type: String
+        Description: Prefix where deploy frontend staging      
+
+    BucketNameProduction:
+        Type: String
+        Description: Name of the bucket where deploy frontend production
+
+    PrefixProduction:
+        Type: String
+        Description: Prefix where deploy frontend production   
+
+    CodeBuildEnvironment:
+        Type: String
+        Description: Docker image to use for CodeBuild container - Use http://amzn.to/2mjCI91 for reference
+        Default: aws/codebuild/ubuntu-base:14.04
+
+    NotificationEmailAddress:
+        Type: String
+        Description: Email to receive information about pipeline
+
+    GitHubOwner:
+      Type: String
+      Description: The owner of the GitHub repository.
+      
+    GitHubOAuthToken:
+      Type: AWS::SSM::Parameter::Value<String>
+      Description: The OAuthToken of the GitHub user.
+      
+    GitHubRepo:
+      Type: String
+      Description: The GitHub repository.
+      
+    BranchName:
+        Type: String
+        Description: Branch to use in pipeline
+        Default: master
+
+    ProjectName:
+        Type: String
+        Description: Service name defined in serverless configuration (https://serverless.com/framework/docs/providers/aws/guide/serverless.yml/)
+
+Resources:
+
+    #########
+    # Build #
+    #########
+
+    # S3 Bucket that CodePipeline/CodeBuild service will use
+    # It will receive both SourceZip (CodeCommit Git HEAD) and BuiltZIP (CodeBuild Artifacts)
+    BuildArtifactsBucket:
+        Type: AWS::S3::Bucket
+
+    CodeBuildServiceRoleStaging:
+        Type: AWS::IAM::Role
+        Properties:
+            Path: !Sub '/managed/${ProjectName}/'
+            AssumeRolePolicyDocument:
+                Version: '2012-10-17'
+                Statement:
+                  -
+                    Action: 'sts:AssumeRole'
+                    Effect: Allow
+                    Principal:
+                      Service:
+                        - codebuild.amazonaws.com
+            Policies:
+                -
+                  PolicyName: !Sub 'CodeBuildAccess-${ProjectName}'
+                  PolicyDocument:
+                    Version: '2012-10-17'
+                    Statement:
+                      -
+                        Sid: "CodeBuildToCWL"
+                        Effect: Allow
+                        Action:
+                          - 'logs:CreateLogGroup'
+                          - 'logs:CreateLogStream'
+                          - 'logs:PutLogEvents'
+                        Resource:
+                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_staging'
+                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_staging:*'
+                      -
+                        Sid: "CodeBuildToS3ArtifactRepo"
+                        Effect: Allow
+                        Action:
+                          - s3:*
+                        Resource:
+                          - !Sub arn:aws:s3:::${BuildArtifactsBucket}/*
+                          - !Sub arn:aws:s3:::${BucketNameStaging}/*
+                          - !Sub arn:aws:s3:::${BuildArtifactsBucket}
+                          - !Sub arn:aws:s3:::${BucketNameStaging}
+                      -
+                        Sid: "ListAllMyBuckets"
+                        Effect: Allow
+                        Action:
+                          - s3:ListAllMyBuckets
+                        Resource:
+                          - arn:aws:s3:::*
+                      -
+                        Sid: "OtherRoleForServerless"
+                        Effect: Allow
+                        Action:
+                          - iam:*
+                        Resource:
+                          - !Sub 'arn:aws:iam::*:role/${ProjectName}*'
+
+    CodeBuildServiceRoleProduction:
+        Type: AWS::IAM::Role
+        Properties:
+            Path: !Sub '/managed/${ProjectName}/'
+            AssumeRolePolicyDocument:
+                Version: '2012-10-17'
+                Statement:
+                  -
+                    Action: 'sts:AssumeRole'
+                    Effect: Allow
+                    Principal:
+                      Service:
+                        - codebuild.amazonaws.com
+            Policies:
+                -
+                  PolicyName: !Sub 'CodeBuildAccess-${ProjectName}'
+                  PolicyDocument:
+                    Version: '2012-10-17'
+                    Statement:
+                      -
+                        Sid: "CodeBuildToCWL"
+                        Effect: Allow
+                        Action:
+                          - 'logs:CreateLogGroup'
+                          - 'logs:CreateLogStream'
+                          - 'logs:PutLogEvents'
+                        Resource:
+                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_production'
+                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_production:*'
+                      -
+                        Sid: "CodeBuildToS3ArtifactRepo"
+                        Effect: Allow
+                        Action:
+                          - s3:*
+                        Resource:
+                          - !Sub arn:aws:s3:::${BuildArtifactsBucket}/*
+                          - !Sub arn:aws:s3:::${BucketNameProduction}/*
+                          - !Sub arn:aws:s3:::${BuildArtifactsBucket}
+                          - !Sub arn:aws:s3:::${BucketNameProduction}
+                      -
+                        Sid: "ListAllMyBuckets"
+                        Effect: Allow
+                        Action:
+                          - s3:ListAllMyBuckets
+                        Resource:
+                          - arn:aws:s3:::*
+                      -
+                        Sid: "OtherRoleForServerless"
+                        Effect: Allow
+                        Action:
+                          - iam:*
+                        Resource:
+                          - !Sub arn:aws:iam::*:role/${ProjectName}*
+
+    CodeBuildProjectProduction:
+        Type: AWS::CodeBuild::Project
+        Properties:
+            Name: !Sub ${ProjectName}_deploy_production
+            Artifacts:
+                Type: CODEPIPELINE
+            Environment:
+                Type: LINUX_CONTAINER
+                ComputeType: BUILD_GENERAL1_SMALL
+                Image: !Sub '${CodeBuildEnvironment}'
+                EnvironmentVariables:
+                  - Name: BUCKET_NAME
+                    Value: !Ref BucketNameProduction
+                  - Name: PREFIX
+                    Value: !Ref PrefixProduction
+            ServiceRole: !GetAtt CodeBuildServiceRoleProduction.Arn
+            Source:
+                Type: CODEPIPELINE
+
+    CodeBuildProjectStaging:
+        Type: AWS::CodeBuild::Project
+        Properties:
+            Name: !Sub '${ProjectName}_deploy_staging'
+            Artifacts:
+                Type: CODEPIPELINE
+            Environment:
+                Type: LINUX_CONTAINER
+                ComputeType: BUILD_GENERAL1_SMALL
+                Image: !Sub '${CodeBuildEnvironment}'
+                EnvironmentVariables:
+                  - Name: BUCKET_NAME
+                    Value: !Ref BucketNameStaging
+                  - Name: PREFIX
+                    Value: !Ref PrefixStaging
+            ServiceRole: !GetAtt CodeBuildServiceRoleStaging.Arn
+            Source:
+                Type: CODEPIPELINE
+
+
+    #############
+    # Pipeline  #
+    #############
+
+    PipelineExecutionRole:
+      Type: AWS::IAM::Role
+      Properties:
+          Path: '/managed/'
+          AssumeRolePolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                -
+                  Action: 'sts:AssumeRole'
+                  Effect: Allow
+                  Principal:
+                    Service:
+                      - codepipeline.amazonaws.com
+          Policies:
+              -
+                PolicyName: !Sub '${ProjectName}-CodePipelinePassRoleAccess'
+                PolicyDocument:
+                  Version: '2012-10-17'
+                  Statement:
+                      -
+                        Action: 'iam:PassRole'
+                        Effect: Allow
+                        Resource:
+                        - !GetAtt CodeBuildServiceRoleStaging.Arn
+                        - !GetAtt CodeBuildServiceRoleProduction.Arn
+              -
+                PolicyName: !Sub '${ProjectName}-CodePipelineS3ArtifactAccess'
+                PolicyDocument:
+                  Version: '2012-10-17'
+                  Statement:
+                      -
+                        Action:
+                          - 's3:GetObject'
+                          - 's3:GetObjectVersion'
+                          - 's3:GetBucketVersioning'
+                          - 's3:PutObject'
+                        Effect: Allow
+                        Resource:
+                          - !Sub 'arn:aws:s3:::${BuildArtifactsBucket}'
+                          - !Sub 'arn:aws:s3:::${BuildArtifactsBucket}/*'
+              -
+                PolicyName: !Sub '${ProjectName}-CodePipelineGitRepoAccess'
+                PolicyDocument:
+                  Version: '2012-10-17'
+                  Statement:
+                      -
+                        Action:
+                          - 'codecommit:GetBranch'
+                          - 'codecommit:GetCommit'
+                          - 'codecommit:UploadArchive'
+                          - 'codecommit:GetUploadArchiveStatus'
+                          - 'codecommit:CancelUploadArchive'
+                        Effect: Allow
+                        Resource: '*'
+              -
+                PolicyName: !Sub '${ProjectName}-CodePipelineBuildAccess'
+                PolicyDocument:
+                  Version: '2012-10-17'
+                  Statement:
+                      -
+                        Action:
+                          - 'codebuild:StartBuild'
+                          - 'codebuild:StopBuild'
+                          - 'codebuild:BatchGetBuilds'
+                        Effect: Allow
+                        Resource:
+                        - !GetAtt CodeBuildProjectStaging.Arn
+                        - !GetAtt CodeBuildProjectProduction.Arn
+              -
+                PolicyName: !Sub '${ProjectName}-CodePipelineSNSAccess'
+                PolicyDocument:
+                  Version: '2012-10-17'
+                  Statement:
+                      -
+                        Action:
+                          - sns:Publish
+                        Effect: Allow
+                        Resource:
+                        - !Ref PipelineNotificationTopic
+
+    Pipeline:
+        Type: AWS::CodePipeline::Pipeline
+        Properties:
+            ArtifactStore:
+                Location: !Ref BuildArtifactsBucket
+                Type: S3
+            Name: !Sub ${ProjectName}_pipeline
+            RoleArn: !GetAtt PipelineExecutionRole.Arn
+            Stages:
+                -
+                  Name: Source
+                  Actions:
+                    -
+                      Name: GithubRepo
+                      ActionTypeId:
+                        Category: Source 
+                        Owner: ThirdParty 
+                        Version: 1 
+                        Provider: GitHub
+                      Configuration:
+                        Owner: !Ref GitHubOwner
+                        Repo: !Ref GitHubRepo
+                        Branch: master
+                        OAuthToken: !Ref GitHubOAuthToken
+                      OutputArtifacts:
+                        - Name: SourceZip
+                      RunOrder: 1
+                -
+                  Name: DeployStaging
+                  Actions:
+                    -
+                      Name: DeployStaging
+                      ActionTypeId:
+                        Category: Build
+                        Owner: AWS
+                        Provider: CodeBuild
+                        Version: 1
+                      Configuration:
+                        ProjectName: !Ref CodeBuildProjectStaging
+                      InputArtifacts:
+                        - Name: SourceZip
+                      OutputArtifacts:
+                        - Name: BuiltZipDeployStaging
+                -
+                  Name: ManualApproval
+                  Actions:
+                  - Name: Approve
+                    ActionTypeId:
+                      Category: Approval
+                      Owner: AWS
+                      Version: 1
+                      Provider: Manual
+                    Configuration:
+                      NotificationArn: !Ref PipelineNotificationTopic
+                      CustomData:
+                        Fn::Sub: 'Do you want to continue and publish on the production stack?'
+                    RunOrder: 1
+                -
+                  Name: Deploy
+                  Actions:
+                    -
+                      Name: Deploy
+                      ActionTypeId:
+                        Category: Build
+                        Owner: AWS
+                        Provider: CodeBuild
+                        Version: 1
+                      Configuration:
+                        ProjectName: !Ref CodeBuildProjectProduction
+                      InputArtifacts:
+                        - Name: SourceZip
+                      OutputArtifacts:
+                        - Name: BuiltZipDeployProduction
+
+    ######################
+    #   Builder Event    #
+    ######################
+
+    PipelineNotificationTopic:
+          Type: "AWS::SNS::Topic"
+          Properties:
+            Subscription:
+              -
+                Endpoint: !Ref NotificationEmailAddress
+                Protocol: "email"
+            TopicName: !Sub "${ProjectName}-topic"
+
+    PipelineNotificationTopicPolicy:
+      Type: AWS::SNS::TopicPolicy
+      Properties:
+        PolicyDocument:
+          Id: AllowCloudwatchEventsToPublish
+          Version: '2012-10-17'
+          Statement:
+            -
+              Sid: My-statement-id
+              Effect: Allow
+              Principal:
+                Service: "events.amazonaws.com"
+              Action: sns:Publish
+              Resource: !Ref PipelineNotificationTopic
+        Topics:
+          - !Ref PipelineNotificationTopic
+
+Outputs:
+
+        ArtifactRepository:
+            Description: S3 Bucket for Pipeline and Build Artifacts
+            Value: !Ref BuildArtifactsBucket
+
+        CodeBuildServiceRoleStaging:
+            Description: CodeBuild IAM Service Role
+            Value: !GetAtt CodeBuildServiceRoleStaging.Arn
+
+        CodeBuildServiceRoleProduction:
+            Description: CodeBuild IAM Service Role
+            Value: !GetAtt CodeBuildServiceRoleProduction.Arn
+
+        CodePipelineServiceRole:
+            Description: CodePipeline IAM Service Role
+            Value: !GetAtt PipelineExecutionRole.Arn

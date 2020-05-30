@@ -15,8 +15,8 @@ sidebar:
     email: g.mucciolo91(at)gmail.com
     # phone: +39 351 9600 330
     website: #do not add http://
-    linkedin: mucciolo91
-    github:
+    linkedin: 'mucciolo91'
+    github: 'ggiallo28'
     gitlab:
     bitbucket:
     twitter: '@ggiallo28'
@@ -44,7 +44,7 @@ sidebar:
 career-profile:
     title: Career Profile
     summary: |
-      Gianluigi Mucciolo has a master degree in Computer Science and operates on Amazon Web Services. He has many years of experience on the use of Agile and DevOps Methodologies, works in the field of Artificial Intelligence and Big Data, and carries out training activities by providing official AWS courses.
+      Gianluigi Mucciolo has a master's degree in Computer Science and operates on Amazon Web Services. He has many years of experience in the use of Agile and DevOps Methodologies, works in the field of Artificial Intelligence and Big Data, and carries out training activities by providing official AWS courses. He can successfully work in a team environment as well as independently, work under pressure and multi-task, deliver quality results.
 
 education:
     - degree: MSc in Information Engineering
@@ -66,13 +66,13 @@ experiences:
       time: 2018 - Present
       company: Amazon, Italy
       details: |
-        He provides courses in AWS Business Essentials, AWS Technical Essentials, Architecting on AWS, Systems Operations on AWS, Developing on AWS, Big Data on AWS, Machine Learning on AWS, Data Warehousing in AWS, Deep Learning on AWS.
+        He provides courses in AWS Business Essentials, AWS Technical Essentials, Architecting on AWS, Systems Operations on AWS, Developing on AWS, Big Data on AWS, Machine Learning on AWS, Data Warehousing in AWS, Deep Learning on AWS, Security on AWS and Planning and Designing Databases on AWS.
 
     - role: AI & DevOps Engineer on AWS
       time: 2017 - Present
       company: Claranet, Italy
       details: |
-        He carries out the migration, the definition of new infrastructures, monitoring and maintenance activities. I also use Amazon Web Services for Machine Learning and Big Data.
+        He carries out the migration, the definition of new infrastructures, monitoring and maintenance activities. He also use Amazon Web Services for Machine Learning and Big Data.
 
     - role: Quality Assurance & Testing
       time: 2017 - 2017
@@ -80,47 +80,45 @@ experiences:
       details: |
         Huawei consultant on OCS project for Telecom Italia.
 
-projects:
-    title: Projects
-    intro:
-
-    assignments:
-      - title: DWH Migration
-        #link: "#"
-        tagline: "Migration from IBM Netezza to Amazon Redshift"
-      - title: News Recommendation
-        #link: "#"
-        tagline: "Build a recommendation engine for an International Brand"
-      - title: Bank Migration
-        #link: "#"
-        tagline: "Migration of a Bank from on-premises to AWS Cloud"
-      - title: Remote Sensing
-        #link: "#"
-        tagline: "Pansharpening methods in Matlab/IDL"
-      - title: Internet of Things
-        #link: "#"
-        tagline: "Embedded Systems Software Engineering with C/AWS IoT"
-      - title: Reinforcement Learning
-        #link: "#"
-        tagline: "Artificial Intelligence of PacMan with Java/Prolog"
-      - title: Artificial Intelligence
-        #link: "#"
-        tagline: "Computer Vision and Machine Learning with C/C++/Matlab"
-      - title: AWS Secure Initial Setup
-        #link: "#"
-        tagline: "With IAM, Config, CloudTrail, Macie & Guard Duty"
-
-publications:
-    title: Publications
-    intro:
-
-    papers:
-      - title: Analysis & Calibration of a Mirror Setup producing Mirror-reflected, Multi-view Videos
-        authors: Gianluigi Mucciolo, Barbara Koneczny, et all.
-        conference: 22° Computer Vision Winter Workshop Retz, Austria, February 6–8, 2017
-
-      - title: Methods to extract sentiment from multimedia content. Weka, Data Mining, Machine Learnin, Feature extraction and Filter.
-        authors: Gianluigi Mucciolo
+#projects:
+#    title: Projects
+#    intro:
+#
+#    assignments:
+#      - title: DWH Migration
+#        #link: "#"
+#        tagline: "Migration from IBM Netezza to Amazon Redshift"
+#      - title: News Recommendation
+#        #link: "#"
+#        tagline: "Build a recommendation engine for an International Brand"
+#      - title: Bank Migration
+#        #link: "#"
+#        tagline: "Migration of a Bank from on-premises to AWS Cloud"
+#      - title: Remote Sensing
+#        #link: "#"
+#        tagline: "Pansharpening methods in Matlab/IDL"
+#      - title: Internet of Things
+#        #link: "#"
+#        tagline: "Embedded Systems Software Engineering with C/AWS IoT"
+#      - title: Reinforcement Learning
+#        #link: "#"
+#        tagline: "Artificial Intelligence of PacMan with Java/Prolog"
+#      - title: Artificial Intelligence
+#        #link: "#"
+#        tagline: "Computer Vision and Machine Learning with C/C++/Matlab"
+#      - title: AWS Secure Initial Setup
+#        #link: "#"
+#        tagline: "With IAM, Config, CloudTrail, Macie & Guard Duty"
+#
+#publications:
+#    title: Publications
+#    papers:
+#      - title: Analysis & Calibration of a Mirror Setup producing Mirror-reflected, Multi-view Videos
+#        authors: Gianluigi Mucciolo, Barbara Koneczny, et all.
+#        conference: 22° Computer Vision Winter Workshop Retz, Austria, February 6–8, 2017
+#
+#      - title: Methods to extract sentiment from multimedia content. Weka, Data Mining, Machine Learnin, Feature extraction and Filter.
+#        authors: Gianluigi Mucciolo
 
 
 certifications:
@@ -128,43 +126,56 @@ certifications:
     intro:
 
     assignments:
+      - title: AWS Certified Database - Specialty
+        link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=12&t=c&d=2020-01-09&ci=AWS00384920"
+        tagline: "get 2019 – mar 2023"
+
+      - title: AWS Certified Security - Specialty
+        link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=7&t=c&d=2019-12-19&ci=AWS00384920"
+        tagline: "dic 2019 – dic 2022"
+
+      - title: AWS Certified Machine Learning - Specialty
+        link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=10&t=c&d=2019-09-10&ci=AWS00384920"
+        tagline: "set 2019 – set 2022"
+
       - title: AWS Certified Developer - Associate
         link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=2&t=c&d=2018-10-15&ci=AWS00384920"
-        tagline: "ott 2018 – ott 2020"
+        tagline: "ott 2018 – ott 2021"
 
       - title: AWS Certified Big Data - Specialty
         link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=8&t=c&d=2018-09-27&ci=AWS00384920"
-        tagline: "set 2018 – set 2020"
+        tagline: "set 2018 – set 2021"
 
       - title: AWS Certified SysOps Administrator - Associate
         link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=3&t=c&d=2018-09-20&ci=AWS00384920"
-        tagline: "set 2018 – set 2020"
+        tagline: "set 2018 – set 2021"
 
       - title: AWS Certified Solutions Architect - Associate
         link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00384920"
-        tagline: "feb 2018 – feb 2020"
+        tagline: "feb 2018 – feb 2021"
 
 skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: Terraform, Cloudformation, Ansible
+      - name: CloudFormation, Terraform, Ansible
         level: 98%
 
       - name: AWS CI/CD Tools & Jenkins
         level: 95%
 
-      - name: Python, Amazon SageMaker & MXNet
+      - name: Python, SageMaker & MXNet
         level: 95%
 
       - name: ETL, Kinesis, Redshift & Athena
+        level: 90%
+
+      - name: AWS System Manager & CLI
         level: 80%
 
-      - name: Serverless & Microservices
-        level: 80%
-
-      - name: AWS System Manager & Commands/Tools
+      - name: Serverless & Microservices, Docker
         level: 70%
 
 #footer:
 #  In compliance with the GDPR and Italian Legislative Decree no. 196 dated 30/06/2003, I hereby authorize the recipient of this document to use and process my personal details for the purpose of recruiting and selecting staff and I confirm to be informed of my rights in accordance to art. 7 of the above mentioned Decree.
+#
