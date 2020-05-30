@@ -20,4 +20,4 @@ phases:
       - jekyll build
   post_build:
     commands:
-      - aws s3 sync ./_site s3://$BUCKET_NAME/$PREFIX --acl public-read
+      - aws s3 cp ./_site s3://$BUCKET_NAME/$PREFIX --acl public-read
