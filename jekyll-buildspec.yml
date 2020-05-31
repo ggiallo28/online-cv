@@ -7,7 +7,6 @@ phases:
       - apk add --update py-pip
       - pip3 install --upgrade --user awscli
       - PATH=$PATH:/root/.local/bin
-      - apk add wkhtmltopdf
   pre_build:
     run-as: root
     commands:
