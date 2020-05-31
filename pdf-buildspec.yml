@@ -1,6 +1,12 @@
 version: 0.2
 
 phases:
+  install:
+    run-as: root
+    commands:
+      - apk add --update py-pip
+      - pip3 install --upgrade --user awscli
+      - PATH=$PATH:/root/.local/bin
   build:
     run-as: root
     commands:
