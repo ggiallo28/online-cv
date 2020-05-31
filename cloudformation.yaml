@@ -1,6 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Deploy a codecommit repo to S3
 Parameters:
+
     BucketNameStaging:
         Type: String
         Description: Name of the bucket where deploy frontend staging
@@ -15,13 +16,26 @@ Parameters:
 
     PrefixProduction:
         Type: String
-        Description: Prefix where deploy frontend production   
+        Description: Prefix where deploy frontend production  
+
+    SiteStaging:
+        Type: String
+        Description: The url of the web site in stagin env
+
+    SiteProduction:
+        Type: String
+        Description: The url of the web site in production env
 
     CodeBuildEnvironment:
         Type: String
         Description: Docker image to use for CodeBuild container - Use http://amzn.to/2mjCI91 for reference
         Default: aws/codebuild/ubuntu-base:14.04
 
+    CodeBuildPDFEnvironment:
+        Type: String
+        Description: Docker image to use for CodeBuild container - Use http://amzn.to/2mjCI91 for reference
+        Default: aws/codebuild/ubuntu-base:14.04
+    
     NotificationEmailAddress:
         Type: String
         Description: Email to receive information about pipeline
@@ -166,10 +180,10 @@ Resources:
                         Resource:
                           - !Sub arn:aws:iam::*:role/${ProjectName}*
 
-    CodeBuildProjectProduction:
+    CodeBuildJekyllProduction:
         Type: AWS::CodeBuild::Project
         Properties:
-            Name: !Sub ${ProjectName}_deploy_production
+            Name: !Sub ${ProjectName}_deploy_jekyll_production
             Artifacts:
                 Type: CODEPIPELINE
             Environment:
@@ -184,11 +198,12 @@ Resources:
             ServiceRole: !GetAtt CodeBuildServiceRoleProduction.Arn
             Source:
                 Type: CODEPIPELINE
+                BuildSpec: jekyll-buildspec.yml
 
-    CodeBuildProjectStaging:
+    CodeBuildJekyllStaging:
         Type: AWS::CodeBuild::Project
         Properties:
-            Name: !Sub '${ProjectName}_deploy_staging'
+            Name: !Sub '${ProjectName}_deploy_jekyll_staging'
             Artifacts:
                 Type: CODEPIPELINE
             Environment:
@@ -203,7 +218,51 @@ Resources:
             ServiceRole: !GetAtt CodeBuildServiceRoleStaging.Arn
             Source:
                 Type: CODEPIPELINE
+                BuildSpec: jekyll-buildspec.yml
 
+    CodeBuildPDFProduction:
+        Type: AWS::CodeBuild::Project
+        Properties:
+            Name: !Sub ${ProjectName}_deploy_pdf_production
+            Artifacts:
+                Type: CODEPIPELINE
+            Environment:
+                Type: LINUX_CONTAINER
+                ComputeType: BUILD_GENERAL1_SMALL
+                Image: !Sub '${CodeBuildPDFEnvironment}'
+                EnvironmentVariables:
+                  - Name: BUCKET_NAME
+                    Value: !Ref BucketNameProduction
+                  - Name: PREFIX
+                    Value: !Ref PrefixProduction
+                  - Name: SITE
+                    Value: !Ref SiteProduction
+            ServiceRole: !GetAtt CodeBuildServiceRoleProduction.Arn
+            Source:
+                Type: CODEPIPELINE
+                BuildSpec: pdf-buildspec.yml
+
+    CodeBuildPDFStaging:
+        Type: AWS::CodeBuild::Project
+        Properties:
+            Name: !Sub '${ProjectName}_deploy_pdf_staging'
+            Artifacts:
+                Type: CODEPIPELINE
+            Environment:
+                Type: LINUX_CONTAINER
+                ComputeType: BUILD_GENERAL1_SMALL
+                Image: !Sub '${CodeBuildPDFEnvironment}'
+                EnvironmentVariables:
+                  - Name: BUCKET_NAME
+                    Value: !Ref BucketNameStaging
+                  - Name: PREFIX
+                    Value: !Ref PrefixStaging
+                  - Name: SITE
+                    Value: !Ref SiteStaging
+            ServiceRole: !GetAtt CodeBuildServiceRoleStaging.Arn
+            Source:
+                Type: CODEPIPELINE
+                BuildSpec: pdf-buildspec.yml
 
     #############
     # Pipeline  #
@@ -275,8 +334,10 @@ Resources:
                           - 'codebuild:BatchGetBuilds'
                         Effect: Allow
                         Resource:
-                        - !GetAtt CodeBuildProjectStaging.Arn
-                        - !GetAtt CodeBuildProjectProduction.Arn
+                        - !GetAtt CodeBuildJekyllStaging.Arn
+                        - !GetAtt CodeBuildJekyllProduction.Arn
+                        - !GetAtt CodeBuildPDFStaging.Arn
+                        - !GetAtt CodeBuildPDFProduction.Arn
               -
                 PolicyName: !Sub '${ProjectName}-CodePipelineSNSAccess'
                 PolicyDocument:
@@ -317,21 +378,35 @@ Resources:
                         - Name: SourceZip
                       RunOrder: 1
                 -
-                  Name: DeployStaging
+                  Name: DeployJekyllStaging
                   Actions:
                     -
-                      Name: DeployStaging
+                      Name: DeployJekyllStaging
                       ActionTypeId:
                         Category: Build
                         Owner: AWS
                         Provider: CodeBuild
                         Version: 1
                       Configuration:
-                        ProjectName: !Ref CodeBuildProjectStaging
+                        ProjectName: !Ref CodeBuildJekyllStaging
                       InputArtifacts:
                         - Name: SourceZip
                       OutputArtifacts:
                         - Name: BuiltZipDeployStaging
+                -
+                  Name: DeployPDFStaging
+                  Actions:
+                    -
+                      Name: DeployPDFStaging
+                      ActionTypeId:
+                        Category: Build
+                        Owner: AWS
+                        Provider: CodeBuild
+                        Version: 1
+                      Configuration:
+                        ProjectName: !Ref CodeBuildPDFStaging
+                      InputArtifacts:
+                        - Name: SourceZip
                 -
                   Name: ManualApproval
                   Actions:
@@ -347,21 +422,35 @@ Resources:
                         Fn::Sub: 'Do you want to continue and publish on the production stack?'
                     RunOrder: 1
                 -
-                  Name: Deploy
+                  Name: DeployJekyll
                   Actions:
                     -
-                      Name: Deploy
+                      Name: DeployJekyll
                       ActionTypeId:
                         Category: Build
                         Owner: AWS
                         Provider: CodeBuild
                         Version: 1
                       Configuration:
-                        ProjectName: !Ref CodeBuildProjectProduction
+                        ProjectName: !Ref CodeBuildJekyllProduction
                       InputArtifacts:
                         - Name: SourceZip
                       OutputArtifacts:
                         - Name: BuiltZipDeployProduction
+                -
+                  Name: DeployPDF
+                  Actions:
+                    -
+                      Name: DeployPDF
+                      ActionTypeId:
+                        Category: Build
+                        Owner: AWS
+                        Provider: CodeBuild
+                        Version: 1
+                      Configuration:
+                        ProjectName: !Ref CodeBuildPDFProduction
+                      InputArtifacts:
+                        - Name: SourceZip
 
     ######################
     #   Builder Event    #

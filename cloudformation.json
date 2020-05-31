@@ -20,6 +20,10 @@
     "ParameterValue": "jekyll/builder"
   },
   {
+    "ParameterKey": "CodeBuildPDFEnvironment",
+    "ParameterValue": "noomz/wkhtmltopdf-patched-qt"
+  },
+  {
     "ParameterKey": "NotificationEmailAddress",
     "ParameterValue": "nmsek@hi2.in"
   },
@@ -38,5 +42,13 @@
   {
     "ParameterKey": "ProjectName",
     "ParameterValue": "online-cv"
+  },
+  {
+    "ParameterKey": "SiteStaging",
+    "ParameterValue": "http://staging-freeme.name.s3-website-eu-west-1.amazonaws.com/cv"
+  },
+  {
+    "ParameterKey": "SiteProduction",
+    "ParameterValue": "http://www.freeme.name/cv"
   }
-]
+]  
