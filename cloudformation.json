@@ -45,10 +45,10 @@
   },
   {
     "ParameterKey": "SiteStaging",
-    "ParameterValue": "http://staging-freeme.name.s3-website-eu-west-1.amazonaws.com/cv"
+    "ParameterValue": "http://staging-freeme.name.s3-website-eu-west-1.amazonaws.com/cv/"
   },
   {
     "ParameterKey": "SiteProduction",
-    "ParameterValue": "http://www.freeme.name/cv"
+    "ParameterValue": "http://www.freeme.name/cv/"
   }
 ]  
