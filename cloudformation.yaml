@@ -99,8 +99,7 @@ Resources:
                           - 'logs:CreateLogStream'
                           - 'logs:PutLogEvents'
                         Resource:
-                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_staging'
-                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_staging:*'
+                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_*'
                       -
                         Sid: "CodeBuildToS3ArtifactRepo"
                         Effect: Allow
@@ -153,8 +152,7 @@ Resources:
                           - 'logs:CreateLogStream'
                           - 'logs:PutLogEvents'
                         Resource:
-                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_production'
-                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_deploy_production:*'
+                          - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/codebuild/${ProjectName}_*'
                       -
                         Sid: "CodeBuildToS3ArtifactRepo"
                         Effect: Allow
