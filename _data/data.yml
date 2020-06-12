@@ -14,7 +14,7 @@ sidebar:
     # Sidebar links
     email: g.mucciolo91(at)gmail.com
     # phone: +39 351 9600 330
-    website: #do not add http://
+    website: gmucciolo.it
     linkedin: 'mucciolo91'
     github: 'ggiallo28'
     gitlab:
@@ -176,6 +176,11 @@ skills:
       - name: Serverless & Microservices, Docker
         level: 70%
 
-#footer:
-#  In compliance with the GDPR and Italian Legislative Decree no. 196 dated 30/06/2003, I hereby authorize the recipient of this document to use and process my personal details for the purpose of recruiting and selecting staff and I confirm to be informed of my rights in accordance to art. 7 of the above mentioned Decree.
+footer:
+  In compliance with the GDPR and Italian Legislative Decree no. 196 dated 30/06/2003, I hereby authorize the recipient of this document to use and process my personal details for the purpose of recruiting and selecting staff and I confirm to be informed of my rights in accordance to art. 7 of the above mentioned Decree.
+
+  The undersigned, Mucciolo Gianluigi, aware of the consequences of making false statements, falsehood of acts and use of false facts, punishable by law according to art. 76 D.P.R. n. 445/2000 and art. 496 of the Italian Penal Code, declare, under my own responsibility, that the information contained in the submitted documentation is true and correct. 
+
+
+
 #
