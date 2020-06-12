@@ -5,7 +5,7 @@
   },
   {
     "ParameterKey": "BucketNameProduction",
-    "ParameterValue": "www.freeme.name"
+    "ParameterValue": "gmucciolo.it"
   },
   {
     "ParameterKey": "PrefixStaging",
