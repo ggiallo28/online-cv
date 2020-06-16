@@ -39,3 +39,31 @@ pipeline:
 		PARAMETERS=file://cloudformation.json \
 		TEMPLATE_BODY=file://cloudformation.yaml ;
 
+state:
+	$(eval PIPENAME=$(shell aws cloudformation describe-stacks --stack-name $(PREFIXNAME)-pipeline --region $(REGION)\
+		--query "Stacks[0].Outputs" | jq -r '.[] | select(.OutputKey=="PipelineName") | .OutputValue'))
+	aws codepipeline get-pipeline-state --name $(PIPENAME) --region $(REGION)\
+		--query "stageStates[*].{\
+					STAGE:stageName,\
+					ACTION:actionStates[0].actionName,\
+					ID:latestExecution.pipelineExecutionId,\
+					TOKEN:actionStates[0].latestExecution.token,\
+					STATUS:latestExecution.status}"\
+		--output json
+
+approve:
+	$(eval PIPENAME=$(shell aws cloudformation describe-stacks --stack-name $(PREFIXNAME)-pipeline --region $(REGION) --query "Stacks[0].Outputs" | jq -r '.[] | select(.OutputKey=="PipelineName") | .OutputValue'))
+	$(eval JSON=$(shell aws codepipeline get-pipeline-state --name $(PIPENAME) --region $(REGION) --query\
+					"{\
+						pipelineName:pipelineName,\
+						stageName:stageStates[?actionStates[0].latestExecution.token!=None].stageName|[0],\
+						actionName:stageStates[?actionStates[0].latestExecution.token!=None].actionStates[0].actionName|[0],\
+						token:stageStates[?actionStates[0].latestExecution.token!=None].actionStates[0].latestExecution.token|[0]\
+					}" | jq '. + {"result": {"summary": "It Works","status": "Approved"}}'\
+				))
+	aws codepipeline put-approval-result --cli-input-json '$(JSON)' --region $(REGION)
+
+
+
+
+			

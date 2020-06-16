@@ -497,3 +497,7 @@ Outputs:
         CodePipelineServiceRole:
             Description: CodePipeline IAM Service Role
             Value: !GetAtt PipelineExecutionRole.Arn
+
+        PipelineName:
+            Description: CodePipeline Name
+            Value: !Ref Pipeline
