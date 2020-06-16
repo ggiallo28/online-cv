@@ -49,7 +49,7 @@ state:
 					ID:latestExecution.pipelineExecutionId,\
 					TOKEN:actionStates[0].latestExecution.token,\
 					STATUS:latestExecution.status}"\
-		--output json
+		--output table
 
 approve:
 	$(eval PIPENAME=$(shell aws cloudformation describe-stacks --stack-name $(PREFIXNAME)-pipeline --region $(REGION) --query "Stacks[0].Outputs" | jq -r '.[] | select(.OutputKey=="PipelineName") | .OutputValue'))
