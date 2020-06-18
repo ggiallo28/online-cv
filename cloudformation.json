@@ -1,7 +1,7 @@
 [
   {
     "ParameterKey": "BucketNameStaging",
-    "ParameterValue": "staging-freeme.name"
+    "ParameterValue": "stage.gmucciolo.it"
   },
   {
     "ParameterKey": "BucketNameProduction",
@@ -45,10 +45,10 @@
   },
   {
     "ParameterKey": "SiteStaging",
-    "ParameterValue": "http://staging-freeme.name.s3-website-eu-west-1.amazonaws.com/cv/"
+    "ParameterValue": "http://stage.gmucciolo.it/cv/"
   },
   {
     "ParameterKey": "SiteProduction",
-    "ParameterValue": "http://gmucciolo.it/cv/"
+    "ParameterValue": "https://gmucciolo.it/cv/"
   }
 ]  
