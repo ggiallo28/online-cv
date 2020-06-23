@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: noomz/wkhtmltopdf-patched-qt
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: Create PDF
+      run: wkhtmltopdf --viewport-size 2000x2000 --orientation Portrait --page-size A4 --margin-bottom 1  --margin-left 1 --margin-right 1 --margin-top 1 --javascript-delay 2000 $SITE vitae.pdf
