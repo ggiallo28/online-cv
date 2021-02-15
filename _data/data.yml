@@ -128,39 +128,39 @@ certifications:
     assignments:
       - title: Certified Kubernetes Application Developer
         link: "https://www.youracclaim.com/badges/4b843fc7-6a2d-411b-bb88-005d83c7d54f/public_url"
-        tagline: "get 2021 – mar 2024"
+        tagline: "january 2021 – march 2024"
 
       - title: CCA Spark and Hadoop Developer 
         link: "http://certification.cloudera.com/verify"
-        tagline: "sep 2020 – sep 2022"
+        tagline: "september 2020 – september 2022"
 
       - title: AWS Certified Database - Specialty
         link: "https://www.youracclaim.com/badges/7ebb29b7-1e5a-4fe8-9677-23de5754ab4b/public_url"
-        tagline: "get 2019 – mar 2023"
+        tagline: "january 2019 – march 2023"
 
       - title: AWS Certified Security - Specialty
         link: "https://www.youracclaim.com/badges/8ccd28a9-fa6a-416f-96ff-5b8efa33b76e/public_url"
-        tagline: "dic 2019 – dic 2022"
+        tagline: "december 2019 – december 2022"
 
       - title: AWS Certified Machine Learning - Specialty
         link: "https://www.youracclaim.com/badges/ed950464-d14a-4b40-8ba4-4cbb277ca48f/public_url"
-        tagline: "set 2019 – set 2022"
+        tagline: "september 2019 – september 2022"
 
       - title: AWS Certified Developer - Associate
-        link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=2&t=c&d=2018-10-15&ci=AWS00384920"
-        tagline: "ott 2018 – ott 2021"
+        link: "https://www.youracclaim.com/badges/636889a2-8557-48d1-9f94-3e373b3317de/public_url"
+        tagline: "october 2018 – october 2021"
 
       - title: AWS Certified Big Data - Specialty
-        link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=8&t=c&d=2018-09-27&ci=AWS00384920"
-        tagline: "set 2018 – set 2021"
+        link: "https://www.youracclaim.com/badges/b0e3fa08-a732-45c2-acd7-df1ee9c3891c/public_url"
+        tagline: "september 2018 – september 2021"
 
       - title: AWS Certified SysOps Administrator - Associate
         link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=3&t=c&d=2018-09-20&ci=AWS00384920"
-        tagline: "set 2018 – set 2021"
+        tagline: "september 2018 – september 2021"
 
       - title: AWS Certified Solutions Architect - Associate
         link: "https://www.certmetrics.com/amazon/public/badge.aspx?i=1&t=c&d=2018-02-08&ci=AWS00384920"
-        tagline: "feb 2018 – feb 2021"
+        tagline: "february 2018 – february 2021"
 
 skills:
     title: Skills &amp; Proficiency
