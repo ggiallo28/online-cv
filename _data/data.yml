@@ -72,7 +72,7 @@ experiences:
       time: 2017 - Present
       company: Claranet, Italy
       details: |
-        He carries out the migration, the definition of new infrastructures, monitoring and maintenance activities. He also use Amazon Web Services for Machine Learning and Big Data.
+        He carries out the migration and definition of new infrastructures, monitoring and maintenance activities. He use Amazon Web Services for Machine Learning and Big Data.
 
     - role: Quality Assurance & Testing
       time: 2017 - 2017
@@ -126,6 +126,14 @@ certifications:
     intro:
 
     assignments:
+      - title: Certified Kubernetes Administrator
+        link: "https://www.credly.com/badges/41827262-7490-4694-bc44-9fc4d76897d2?source=linked_in_profile"
+        tagline: "apr 2021 – apr 2024"
+
+      - title: AWS Certified Solutions Architect – Professional
+        link: "https://www.youracclaim.com/badges/c5b5da27-f4bb-4858-8d8b-7cb14eaf45f8?source=linked_in_profile"
+        tagline: "mar 2021 – mar 2024"
+
       - title: Certified Kubernetes Application Developer
         link: "https://www.youracclaim.com/badges/4b843fc7-6a2d-411b-bb88-005d83c7d54f/public_url"
         tagline: "jan 2021 – mar 2024"
