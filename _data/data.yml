@@ -30,6 +30,9 @@ sidebar:
 
       - idiom: English
         level: Fluent, Certified B2
+      
+      - idiom: Russian
+        level: A1
 
     interests:
       - item: Artificial Intelligence
@@ -44,8 +47,8 @@ sidebar:
 career-profile:
     title: Career Profile
     summary: |
-      Gianluigi Mucciolo has a master's degree in Computer Science and operates on Amazon Web Services. He has experience in the use of Agile and DevOps Methodologies, works in the field of Artificial Intelligence and Big Data, and carries out training activities by providing official AWS courses, he is an AWS Authorized Instructor and an AWS Community Builder. He can successfully work in a team environment as well as independently, work under pressure and multi-task, deliver quality results. More than that, he loves having meaningful conversations, reading books, and walking in nature. 
-
+      Gianluigi Mucciolo has experience in Agile and DevOps methodologies and works in the areas of Artificial Intelligence and Big Data. He is an AWS Authorised Instructor, conducting training activities by delivering official AWS courses. He is also part of the AWS Community Builder program. In addition, he can work both as part of a team and independently, under pressure, multi-task, and deliver high-quality results. He loves having meaningful conversations, reading books, and walking in nature.
+      
 education:
     - degree: MSc in Information Engineering
       university: |
