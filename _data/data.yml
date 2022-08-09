@@ -165,6 +165,9 @@ skills:
     toolset:
       - name: CloudFormation, Terraform & Ansible
         level: 98%
+  
+      - name: ETL, Kinesis, Redshift & Athena
+        level: 96%
 
       - name: AWS CI/CD Tools & Jenkins
         level: 95%
@@ -172,14 +175,11 @@ skills:
       - name: Python, SageMaker & MXNet
         level: 95%
 
-      - name: ETL, Kinesis, Redshift & Athena
-        level: 90%
-
       - name: AWS System Manager, CLI & K8s
-        level: 80%
+        level: 85%
 
       - name: Serverless, Microservices & Docker
-        level: 70%
+        level: 78%
 
       - name: Go, Java & Software Design Patterns
         level: 55%
