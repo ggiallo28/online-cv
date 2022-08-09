@@ -10,7 +10,7 @@ phases:
   build:
     run-as: root
     commands:
-      - wkhtmltopdf --viewport-size 2000x2000 --orientation Portrait --page-size A4 --margin-bottom 1  --margin-left 1 --margin-right 1 --margin-top 1 --javascript-delay 2000 $SITE vitae.pdf
+      - wkhtmltopdf --viewport-size 2000x2000 --orientation Portrait --page-size A4 --margin-bottom 0  --margin-left 0 --margin-right 0 --margin-top 0 --javascript-delay 2000 $SITE vitae.pdf
   post_build:
     commands:
       - aws s3 cp ./vitae.pdf s3://$BUCKET_NAME/$PREFIX/vitae.pdf --acl public-read
