@@ -36,19 +36,32 @@ sidebar:
 
     interests:
       - item: Artificial Intelligence
-        link:
+        link: https://github.com/xpeppers/starway-to-orione-mlops
 
       - item: Technical Meetings
-        link:
+        link: https://aws.amazon.com/it/developer/community/community-builders/community-builders-directory/?cb-cards.q=Gianluigi%2BMucciolo
 
       - item: Learning & Self Improvement
-        link:
+        link: https://elearning.academy-dli.com/p/machine_learning_amazon_sagemaker
+
+    books:
+      - item: Barrett - How Emotions Are Made
+        link: https://www.amazon.it/How-Emotions-Are-Made-Secret/dp/1509837523
+
+      - item: Maxwell - The five levels of leadership
+        link: https://www.amazon.it/five-levels-leadership-John-Maxwell/dp/1599953633  
+      
+      - item: Lewko & Parton - Developer Relations
+        link: https://www.amazon.it/Developer-Relations-Build-Successful-Program/dp/1484271637
+
+      - item: Jung - Psychological Types
+        link: https://www.amazon.it/Psychological-Types-C-G-Jung/dp/0691018138
 
 career-profile:
     title: Career Profile
     summary: |
       Gianluigi Mucciolo has experience in Agile and DevOps methodologies and works in the areas of Artificial Intelligence and Big Data. He is an AWS Authorised Instructor, conducting training activities by delivering official AWS courses. He is also part of the AWS Community Builder program. In addition, he can work both as part of a team and independently, under pressure, multi-task, and deliver high-quality results. He loves having meaningful conversations, reading books, and walking in nature.
-      
+
 education:
     - degree: MSc in Information Engineering
       university: |
