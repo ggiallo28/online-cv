@@ -94,21 +94,6 @@ experiences:
 #      - title: Bank Migration
 #        #link: "#"
 #        tagline: "Migration of a Bank from on-premises to AWS Cloud"
-#      - title: Remote Sensing
-#        #link: "#"
-#        tagline: "Pansharpening methods in Matlab/IDL"
-#      - title: Internet of Things
-#        #link: "#"
-#        tagline: "Embedded Systems Software Engineering with C/AWS IoT"
-#      - title: Reinforcement Learning
-#        #link: "#"
-#        tagline: "Artificial Intelligence of PacMan with Java/Prolog"
-#      - title: Artificial Intelligence
-#        #link: "#"
-#        tagline: "Computer Vision and Machine Learning with C/C++/Matlab"
-#      - title: AWS Secure Initial Setup
-#        #link: "#"
-#        tagline: "With IAM, Config, CloudTrail, Macie & Guard Duty"
 #
 #publications:
 #    title: Publications
@@ -126,6 +111,14 @@ certifications:
     intro:
 
     assignments:
+      - title: AWS Certified Solutions Architect – Architect
+        link: "https://www.credly.com/badges/e2ada19a-949a-4e9a-aa57-ee86f4e89c9b?source=linked_in_profile"
+        tagline: "mar 2021 – mar 2025"
+
+      - title: AWS Certified Data Analytics – Specialty
+        link: "https://www.credly.com/badges/423d029c-d1b0-4877-bb15-cd1a16f6f07a?source=linked_in_profile"
+        tagline: "sep 2018 – sep 2025"
+
       - title: AWS Certified DevOps Engineer – Professional
         link: "https://www.credly.com/badges/e1c2b480-c849-4c42-98cd-2e32080b2d89?source=linked_in_profile"
         tagline: "mar 2021 – mar 2024"
@@ -166,15 +159,11 @@ certifications:
         link: "https://www.youracclaim.com/badges/ed950464-d14a-4b40-8ba4-4cbb277ca48f/public_url"
         tagline: "sep 2019 – sep 2022"
 
-      - title: AWS Certified Big Data - Specialty
-        link: "https://www.youracclaim.com/badges/b0e3fa08-a732-45c2-acd7-df1ee9c3891c/public_url"
-        tagline: "sep 2018 – sep 2021"
-
 skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: CloudFormation, Terraform, Ansible
+      - name: CloudFormation, Terraform & Ansible
         level: 98%
 
       - name: AWS CI/CD Tools & Jenkins
@@ -186,11 +175,14 @@ skills:
       - name: ETL, Kinesis, Redshift & Athena
         level: 90%
 
-      - name: AWS System Manager & CLI
+      - name: AWS System Manager, CLI & K8s
         level: 80%
 
-      - name: Serverless & Microservices, Docker
+      - name: Serverless, Microservices & Docker
         level: 70%
+
+      - name: Go, Java & Software Design Patterns
+        level: 55%
 
 #footer:
 #  The undersigned, Mucciolo Gianluigi, authorize the recipient of this document to use and process personal data in compliance with the GDPR and Italian Legislative Decree no. 196 - 30/06/2003 and confirm to be informed of my rights in accordance with art. 7 of the above mentioned Decree, also aware of the consequences of making false statements, the falsehood of acts, and the use of false facts, punishable by law according to art. 76 D.P.R. n. 445/2000 and art. 496 of the Italian Penal Code, declare, under my responsibility, that the facts contained in the documentation are true and corrects.
