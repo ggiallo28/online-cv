@@ -111,7 +111,7 @@ certifications:
     intro:
 
     assignments:
-      - title: AWS Certified Solutions Architect – Architect
+      - title: AWS Certified Solutions Architect – Associate
         link: "https://www.credly.com/badges/e2ada19a-949a-4e9a-aa57-ee86f4e89c9b?source=linked_in_profile"
         tagline: "mar 2021 – mar 2025"
 
@@ -143,13 +143,13 @@ certifications:
         link: "https://www.youracclaim.com/badges/4b843fc7-6a2d-411b-bb88-005d83c7d54f/public_url"
         tagline: "jan 2021 – mar 2024"
 
-      - title: CCA Spark and Hadoop Developer 
-        link: "http://certification.cloudera.com/verify"
-        tagline: "sep 2020 – sep 2022"
-
       - title: AWS Certified Database - Specialty
         link: "https://www.youracclaim.com/badges/7ebb29b7-1e5a-4fe8-9677-23de5754ab4b/public_url"
         tagline: "jan 2019 – march 2023"
+
+      - title: CCA Spark and Hadoop Developer 
+        link: "http://certification.cloudera.com/verify"
+        tagline: "sep 2020 – sep 2022"
 
       - title: AWS Certified Security - Specialty
         link: "https://www.youracclaim.com/badges/8ccd28a9-fa6a-416f-96ff-5b8efa33b76e/public_url"
@@ -163,7 +163,7 @@ skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: CloudFormation, Terraform & Ansible
+      - name: CloudFormation & Terraform
         level: 98%
   
       - name: ETL, Kinesis, Redshift & Athena
@@ -175,14 +175,14 @@ skills:
       - name: Python, SageMaker & MXNet
         level: 95%
 
-      - name: AWS System Manager, CLI & K8s
+      - name: AWS System Manager & CLI
         level: 85%
 
-      - name: Serverless, Microservices & Docker
-        level: 78%
+      - name: Serverless, K8s & Docker
+        level: 83%
 
-      - name: Go, Java & Software Design Patterns
-        level: 55%
+      - name: Go, Java, Microservices, Ansible & Software Design Patterns
+        level: 60%
 
 #footer:
 #  The undersigned, Mucciolo Gianluigi, authorize the recipient of this document to use and process personal data in compliance with the GDPR and Italian Legislative Decree no. 196 - 30/06/2003 and confirm to be informed of my rights in accordance with art. 7 of the above mentioned Decree, also aware of the consequences of making false statements, the falsehood of acts, and the use of false facts, punishable by law according to art. 76 D.P.R. n. 445/2000 and art. 496 of the Italian Penal Code, declare, under my responsibility, that the facts contained in the documentation are true and corrects.
