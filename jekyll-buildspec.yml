@@ -5,7 +5,7 @@ phases:
     run-as: root
     commands:
       - apk add --update py-pip
-      - pip install --upgrade --user awscli==1.16.10
+      - pip install --upgrade --user awscli==1.33.18
       - PATH=$PATH:/root/.local/bin
   pre_build:
     run-as: root
