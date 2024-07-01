@@ -15,7 +15,7 @@ sidebar:
     email: g.mucciolo91(at)gmail.com
     # phone: +39 351 9600 330
     website: gmucciolo.it
-    linkedin: 'mucciolo91'
+    linkedin: 'ggiallo28'
     github: 'ggiallo28'
     gitlab:
     bitbucket:
@@ -78,6 +78,12 @@ education:
         Methods to extract sentiment from multimedia content. Weka, Data Mining, Machine Learnin, Feature extraction and Filter. GPA: 3.3
 
 experiences:
+    - role: Cloud Innovation Leader
+      time: 2023 - Present
+      company: Recube, Italy
+      details: |
+        He designs and implements cloud solutions, focusing on infrastructure automation and optimization. He collaborates with teams to integrate cloud technologies and ensure scalable, secure operations.
+
     - role: AWS Technical Trainer Champion
       time: 2018 - Present
       company: Amazon, Italy
@@ -85,7 +91,7 @@ experiences:
         He is a Technical Instructor at Amazon Web Services IT for internal and external customers across Europe, Middle East, and Africa (EMEA).
 
     - role: AI & DevOps Engineer on AWS
-      time: 2017 - Present
+      time: 2017 - 2022
       company: Claranet, Italy
       details: |
         He carries out the migration and definition of new infrastructures, monitoring and maintenance activities. He use Amazon Web Services for Machine Learning and Big Data.
@@ -95,7 +101,6 @@ experiences:
       company: NTT DATA, Italy
       details: |
         Huawei consultant on OCS project for Telecom Italia.
-
 #projects:
 #    title: Projects
 #    intro:
@@ -127,9 +132,13 @@ certifications:
     intro:
 
     assignments:
+      - title: AWS Certified Solutions Architect – Professional
+        link: "https://www.credly.com/badges/def25331-9272-4a7d-8c44-6bdf066428fb"
+        tagline: "apr 2024 – apr 2027"
+        
       - title: AWS Certified Solutions Architect – Associate
-        link: "https://www.credly.com/badges/e2ada19a-949a-4e9a-aa57-ee86f4e89c9b?source=linked_in_profile"
-        tagline: "mar 2021 – mar 2025"
+        link: "https://www.credly.com/badges/be160255-3404-4a42-9a5f-b11a27cc808c"
+        tagline: "apr 2024 – apr 2027"
 
       - title: AWS Certified Data Analytics – Specialty
         link: "https://www.credly.com/badges/423d029c-d1b0-4877-bb15-cd1a16f6f07a?source=linked_in_profile"
@@ -150,10 +159,6 @@ certifications:
       - title: Certified Kubernetes Administrator
         link: "https://www.credly.com/badges/41827262-7490-4694-bc44-9fc4d76897d2?source=linked_in_profile"
         tagline: "apr 2021 – apr 2024"
-
-      - title: AWS Certified Solutions Architect – Professional
-        link: "https://www.youracclaim.com/badges/c5b5da27-f4bb-4858-8d8b-7cb14eaf45f8?source=linked_in_profile"
-        tagline: "mar 2021 – mar 2024"
 
       - title: Certified Kubernetes Application Developer
         link: "https://www.youracclaim.com/badges/4b843fc7-6a2d-411b-bb88-005d83c7d54f/public_url"
@@ -179,25 +184,19 @@ skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: CloudFormation & Terraform
+      - name: Infrastructure as Code & Automation
         level: 98%
   
-      - name: ETL, Kinesis, Redshift & Athena
+      - name: Data Processing & Analytics
         level: 96%
 
-      - name: AWS CI/CD Tools & Jenkins
+      - name: CI/CD, DevOps & Containerization
         level: 95%
 
-      - name: Python, SageMaker & MXNet
+      - name: Machine Learning & AI
         level: 95%
 
-      - name: AWS System Manager & CLI
-        level: 85%
-
-      - name: Serverless, K8s & Docker
-        level: 83%
-
-      - name: Go, Java, Microservices, Ansible & Software Design Patterns
+      - name: Software Development & Design Patterns
         level: 60%
 
 #footer:
